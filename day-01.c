@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:47:31 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/25 11:02:00 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/11/25 12:59:13 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static void	first_part(int day);
 static void	second_part(int day);
-static int	count_increasement(t_list *input);
+static int	count_drop(t_list *input);
+static int	count_drop_with_filter(int *input, int size);
 
 void	day_01(void)
 {
@@ -29,62 +30,70 @@ void	first_part(int day)
 
 	(void)day;
 	file = "input/day-01.txt";
-	input = from_txt_to_struct(file);
-	ft_printf("depth increased: %d\n", count_increasement(input));
+	input = from_txt_to_struct_of_int(file);
+	ft_printf("depth increased: %d\n", count_drop(input));
 	ft_lstclear(&input, &del);
 }
 
 void	second_part(int day)
 {
-	ft_printf("second part result day %.2d\n", day);
+	int		fd;
+	char	*file;
+	int		size;
+	int		*input;
+
+	(void)day;
+	file = "input/day-01.txt";
+	fd = open(file, O_RDONLY);
+	size = count_line(fd);
+	close(fd);
+	fd = open(file, O_RDONLY);
+	input = from_txt_to_array_of_int(fd, size);
+	close(fd);
+	ft_printf("deepth increased: %d\n", count_drop_with_filter(input, size));
+	free(input);
 }
 
-int	count_increasement(t_list *input)
+int	count_drop(t_list *input)
 {
-	int		index;
-	int		prev_depth_measurement;
-	int		deepth;
+	int		prev_deepth;
+	int		drop;
 	t_list	*tmp;
 
-	index = 0;
-	deepth = 0;
+	drop = 0;
 	tmp = input;
-	prev_depth_measurement = 0;
+	prev_deepth = 0;
 	while (tmp)
 	{
-		if (index)
+		if (prev_deepth)
 		{
-			if (*((int *)(tmp->content)) > prev_depth_measurement)
-				deepth++;
+			if (*((int *)(tmp->content)) > prev_deepth)
+				drop++;
 		}
-		index++;
-		prev_depth_measurement = *((int *)(tmp->content));
+		prev_deepth = *((int *)(tmp->content));
 		tmp = tmp->next;
 	}
-	return (deepth);
+	return (drop);
 }
 
-// int	(t_list *input)
-// {
-// 	int		index;
-// 	int		prev_depth_measurement;
-// 	int		deepth;
-// 	t_list	*tmp;
+int	count_drop_with_filter(int *input, int size)
+{
+	int	i;
+	int	prev_deepth;
+	int	drop;
 
-// 	index = 0;
-// 	deepth = 0;
-// 	tmp = input;
-// 	prev_depth_measurement = 0;
-// 	while (tmp)
-// 	{
-// 		if (index)
-// 		{
-// 			if (tmp->content > prev_depth_measurement)
-// 				deepth++;
-// 		}
-// 		index++;
-// 		prev_depth_measurement = tmp->content;
-// 		tmp = tmp->next;
-// 	}
-// 	return (deepth);
-// }
+	i = 0;
+	prev_deepth = 0;
+	drop = 0;
+	while (i + 2 < size)
+	{
+		if (prev_deepth)
+		{
+			if ((input[i] + input[i + 1] + input[i + 2]) > prev_deepth)
+				drop++;
+		}
+		prev_deepth = (input[i] + input[i + 1] + input[i + 2]);
+		i++;
+	}
+	return (drop);
+}
