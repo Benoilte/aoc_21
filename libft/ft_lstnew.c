@@ -6,11 +6,12 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:42:40 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/24 17:55:45 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/11/25 10:23:38 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+// #include "../printf/ft_printf.h"
 
 /*
 Create a new t_list struct with malloc. assign var member content with

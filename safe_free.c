@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   safe_free.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 08:44:59 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/25 10:09:49 by bebrandt         ###   ########.fr       */
+/*   Created: 2023/11/25 10:59:44 by bebrandt          #+#    #+#             */
+/*   Updated: 2023/11/25 11:01:19 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "days.h"
 
-/*
-Use del function to delete element's content and free lst memory
-*/
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+void	del(void *content)
 {
-	if (!lst)
-		return ;
-	del(lst->content);
-	free(lst);
+	free(content);
 }

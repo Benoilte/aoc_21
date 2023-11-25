@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 20:11:06 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/24 21:31:13 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/11/25 00:15:14 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 {
 	int	day;
 
-	if (argc >= 2)
+	if (argc == 2)
 	{
 		day = ft_atoi(argv[1]);
 		if (day >= 1 && day <= 9)
@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 		else if (day >= 20 && day <= 25)
 			ft_day_20_to_25(day);
 	}
+	return (0);
 }
 
 void	ft_day_01_to_09(int day)
