@@ -6,45 +6,51 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:47:31 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/25 12:59:13 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/11/27 09:36:20 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "days.h"
 
-static void	first_part(int day);
-static void	second_part(int day);
+static int	first_part(void);
+static int	second_part(void);
 static int	count_drop(t_list *input);
 static int	count_drop_with_filter(int *input, int size);
 
 void	day_01(void)
 {
-	first_part(1);
-	second_part(1);
+	first_part();
+	second_part();
 }
 
-void	first_part(int day)
+int	first_part(void)
 {
 	char	*file;
+	int		fd;
 	t_list	*input;
 
-	(void)day;
 	file = "input/day-01.txt";
-	input = from_txt_to_struct_of_int(file);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (file_not_exist());
+	input = from_txt_to_struct_of_int(fd);
+	close(fd);
 	ft_printf("depth increased: %d\n", count_drop(input));
 	ft_lstclear(&input, &del);
+	return (0);
 }
 
-void	second_part(int day)
+int	second_part(void)
 {
 	int		fd;
 	char	*file;
 	int		size;
 	int		*input;
 
-	(void)day;
 	file = "input/day-01.txt";
 	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (file_not_exist());
 	size = count_line(fd);
 	close(fd);
 	fd = open(file, O_RDONLY);
@@ -52,6 +58,7 @@ void	second_part(int day)
 	close(fd);
 	ft_printf("deepth increased: %d\n", count_drop_with_filter(input, size));
 	free(input);
+	return (0);
 }
 
 int	count_drop(t_list *input)
