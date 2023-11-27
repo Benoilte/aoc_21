@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:48:16 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/27 09:50:27 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/11/27 11:27:37 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int		*from_txt_to_array_of_int(int fd, int size);
 int		count_line(int fd);
 
 void	del(void *content);
+void	free_array(char **array, int size);
 
 int		file_not_exist(void);
 void	display_struct(t_list *lst, char data);

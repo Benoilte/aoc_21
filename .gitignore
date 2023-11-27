@@ -10,3 +10,4 @@ a.out
 .editorconfig
 .metals/
 solve_day
+solve_day.dSYM/
