@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 20:03:57 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/27 11:36:51 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/11/27 21:23:20 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ static int	count_direction_with_aim(t_list *input)
 
 	tmp = input;
 	aim = 0;
-	ft_bzero(direction, 2);
+	direction[0] = 0;
+	direction[1] = 0;
 	while (tmp)
 	{
 		data = ft_split(tmp->content, ' ');
