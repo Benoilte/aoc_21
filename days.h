@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:48:16 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/27 11:27:37 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/11/28 00:06:46 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ t_list	*from_txt_to_struct_of_int(int fd);
 t_list	*from_txt_to_struct_of_str(int fd);
 int		*from_txt_to_array_of_int(int fd, int size);
 int		count_line(int fd);
+
+int 	power_of_two(int n);
 
 void	del(void *content);
 void	free_array(char **array, int size);

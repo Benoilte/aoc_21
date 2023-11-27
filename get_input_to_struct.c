@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 23:35:55 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/27 09:34:23 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/11/27 21:25:56 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,22 @@ text file should have 1 number on each line
 t_list	*from_txt_to_struct_of_int(int fd)
 {
 	int		is_line;
+	int		check_new_line;
 	char	*line;
 	char	*str;
 	t_list	*input;
 
 	input = NULL;
 	is_line = 1;
+	check_new_line = 0;
 	while (is_line)
 	{
 		line = get_next_line(fd);
 		if (line)
 		{
-			str = ft_substr(line, 0, ft_strlen(line) - 1);
+			if (ft_strchr(line, '\n'))
+				check_new_line = 1;
+			str = ft_substr(line, 0, ft_strlen(line) - check_new_line);
 			ft_lstadd_back(&input, ft_lstnew(get_int_ptr(ft_atoi(str))));
 			free(str);
 		}
@@ -50,18 +54,22 @@ text file should have 1 number on each line
 t_list	*from_txt_to_struct_of_str(int fd)
 {
 	int		is_line;
+	int		check_new_line;
 	char	*line;
 	char	*str;
 	t_list	*input;
 
 	input = NULL;
 	is_line = 1;
+	check_new_line = 0;
 	while (is_line)
 	{
 		line = get_next_line(fd);
 		if (line)
 		{
-			str = ft_substr(line, 0, ft_strlen(line) - 1);
+			if (ft_strchr(line, '\n'))
+				check_new_line = 1;
+			str = ft_substr(line, 0, ft_strlen(line) - check_new_line);
 			ft_lstadd_back(&input, ft_lstnew(str));
 		}
 		else
