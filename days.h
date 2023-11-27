@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:48:16 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/25 12:53:56 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/11/27 09:35:50 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,13 @@ typedef struct s_input
 	struct s_input	*next;
 }		t_input;
 
-t_list	*from_txt_to_struct_of_int(char *file);
+t_list	*from_txt_to_struct_of_int(int fd);
+t_list	*from_txt_to_struct_of_str(int fd);
 int		*from_txt_to_array_of_int(int fd, int size);
 int		count_line(int fd);
 
 void	del(void *content);
+
+int		file_not_exist(void);
 
 #endif
