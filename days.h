@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:48:16 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/27 09:35:50 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/11/27 09:50:27 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ int		count_line(int fd);
 void	del(void *content);
 
 int		file_not_exist(void);
+void	display_struct(t_list *lst, char data);
 
 #endif
