@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 23:35:55 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/27 21:25:56 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/11/28 21:55:18 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ t_list	*from_txt_to_struct_of_int(int fd)
 
 	input = NULL;
 	is_line = 1;
-	check_new_line = 0;
 	while (is_line)
 	{
 		line = get_next_line(fd);
 		if (line)
 		{
+			check_new_line = 0;
 			if (ft_strchr(line, '\n'))
 				check_new_line = 1;
 			str = ft_substr(line, 0, ft_strlen(line) - check_new_line);
@@ -61,12 +61,12 @@ t_list	*from_txt_to_struct_of_str(int fd)
 
 	input = NULL;
 	is_line = 1;
-	check_new_line = 0;
 	while (is_line)
 	{
 		line = get_next_line(fd);
 		if (line)
 		{
+			check_new_line = 0;
 			if (ft_strchr(line, '\n'))
 				check_new_line = 1;
 			str = ft_substr(line, 0, ft_strlen(line) - check_new_line);

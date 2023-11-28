@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:48:16 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/28 08:11:56 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/11/29 00:10:36 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ typedef struct s_input
 t_list	*from_txt_to_struct_of_int(int fd);
 t_list	*from_txt_to_struct_of_str(int fd);
 int		*from_txt_to_array_of_int(int fd, int size);
+char	**from_txt_to_array_of_str(int fd, int size);
 int		count_line(int fd);
+void	*copy(void *content);
 
 int		power_of_two(int n);
 
@@ -64,7 +66,16 @@ int		file_not_exist(void);
 void	display_struct(t_list *lst, char data);
 
 // day 3 utils
-int		*get_most_common_bit(t_list *input, size_t size);
-void	filter_most_common_bit(int *bit, size_t size);
+int		compute_power_consumption(int *bit, size_t size);
+int		get_oxygen(t_list *input, size_t size);
+int		get_co2(t_list *input, size_t size);
+int		power_of_two(int n);
+int		*get_msb(t_list *input, size_t size);
+void	filter_msb(int *bit, size_t size);
+int		get_msb_or_lsb(t_list *input, int index, int msb);
+void	filter_bit_criteria(t_list **root, int msb, int i);
+int		bit_str_to_int(char *number, size_t size);
+
+void	from_msb_to_lsb(int *bit, size_t size);
 
 #endif

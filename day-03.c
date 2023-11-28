@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 20:04:14 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/28 08:15:20 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/11/29 00:20:17 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	first_part(void);
 static int	second_part(void);
 static int	get_power_consumption(t_list *input);
-static int	compute_most_and_least_common_bit(int *bit, int size);
+static int	get_co2_scrubber_and_oxygen_gen(t_list *input);
 
 void	day_03(void)
 {
@@ -52,8 +52,7 @@ int	second_part(void)
 		return (file_not_exist());
 	input = from_txt_to_struct_of_str(fd);
 	close(fd);
-	// ft_printf("power consumption : %d\n", get_power_consumption(input));
-	ft_lstclear(&input, &del);
+	ft_printf("life support: %d\n", get_co2_scrubber_and_oxygen_gen(input));
 	return (0);
 }
 
@@ -63,21 +62,20 @@ static int	get_power_consumption(t_list *input)
 	size_t	size;
 
 	size = ft_strlen((char *)(input->content));
-	bit = get_most_common_bit(input, size);
-	return (compute_most_and_least_common_bit(bit, size));
+	bit = get_msb(input, size);
+	return (compute_power_consumption(bit, size));
 }
 
-static int	compute_most_and_least_common_bit(int *bit, int size)
+static int	get_co2_scrubber_and_oxygen_gen(t_list *input)
 {
-	int	i;
-	int	gamma_rate;
+	int		oxygen_generator;
+	int		co2_scrubber;
+	size_t	size;
+	t_list	*input_backup;
 
-	i = size;
-	gamma_rate = 0;
-	while (--i >= 0)
-	{
-		if (bit[i] == 1)
-			gamma_rate += power_of_two((size - 1) - i);
-	}
-	return (gamma_rate * (gamma_rate ^ (power_of_two(size) - 1)));
+	input_backup = ft_lstmap(input, &copy, &del);
+	size = ft_strlen((char *)(input->content));
+	oxygen_generator = get_oxygen(input, size);
+	co2_scrubber = get_co2(input_backup, size);
+	return (oxygen_generator * co2_scrubber);
 }
