@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:48:16 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/28 00:06:46 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/11/28 08:11:56 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,16 @@ t_list	*from_txt_to_struct_of_str(int fd);
 int		*from_txt_to_array_of_int(int fd, int size);
 int		count_line(int fd);
 
-int 	power_of_two(int n);
+int		power_of_two(int n);
 
 void	del(void *content);
 void	free_array(char **array, int size);
 
 int		file_not_exist(void);
 void	display_struct(t_list *lst, char data);
+
+// day 3 utils
+int		*get_most_common_bit(t_list *input, size_t size);
+void	filter_most_common_bit(int *bit, size_t size);
 
 #endif

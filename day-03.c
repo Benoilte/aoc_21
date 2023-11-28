@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 20:04:14 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/28 00:07:47 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/11/28 08:15:20 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,32 +59,11 @@ int	second_part(void)
 
 static int	get_power_consumption(t_list *input)
 {
-	size_t	i;
 	int		*bit;
 	size_t	size;
-	t_list	*tmp;
 
-	i = 0;
-	tmp = input;
-	size = ft_strlen((char *)(tmp->content));
-	bit = ft_calloc(size, sizeof(int));
-	if (!bit)
-		return (0);
-	while (i < size)
-		bit[i++] = 0;
-	while (tmp)
-	{
-		i = 0;
-		while (i < size)
-		{
-			if (((char *)(tmp->content))[i] == '0')
-				bit[i]--;
-			else if (((char *)(tmp->content))[i] == '1')
-				bit[i]++;
-			i++;
-		}
-		tmp = tmp->next;
-	}
+	size = ft_strlen((char *)(input->content));
+	bit = get_most_common_bit(input, size);
 	return (compute_most_and_least_common_bit(bit, size));
 }
 
@@ -93,15 +72,7 @@ static int	compute_most_and_least_common_bit(int *bit, int size)
 	int	i;
 	int	gamma_rate;
 
-	i = 0;
-	while (i < size)
-	{
-		if (bit[i] > 0)
-			bit[i] = 1;
-		else
-			bit[i] = 0;
-		i++;
-	}
+	i = size;
 	gamma_rate = 0;
 	while (--i >= 0)
 	{
