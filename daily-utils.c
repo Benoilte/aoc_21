@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 20:56:37 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/29 00:04:02 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/11/29 21:27:40 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,6 @@ int	power_of_two(int n)
 		n--;
 	}
 	return (result);
-}
-
-void	from_msb_to_lsb(int *bit, size_t size)
-{
-	int	i;
-
-	i = size;
-	while (--i >= 0)
-		bit[i] = bit[i] ^ 1;
 }
 
 void	*copy(void *content)

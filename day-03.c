@@ -6,7 +6,7 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 20:04:14 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/29 00:20:17 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/11/29 21:26:14 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,24 @@ int	second_part(void)
 
 static int	get_power_consumption(t_list *input)
 {
-	int		*bit;
 	size_t	size;
+	int		msb;
+	int		i;
+	int		gamma_rate;
+	char	*bit;
 
 	size = ft_strlen((char *)(input->content));
-	bit = get_msb(input, size);
-	return (compute_power_consumption(bit, size));
+	bit = ft_calloc(size, sizeof(char));
+	i = 0;
+	while ((size_t)i < size)
+	{
+		msb = get_msb_or_lsb(input, i, 1);
+		bit[i] = msb + 48;
+		i++;
+	}
+	gamma_rate = bit_str_to_int(bit, size);
+	free(bit);
+	return (gamma_rate * (gamma_rate ^ (power_of_two(size) - 1)));
 }
 
 static int	get_co2_scrubber_and_oxygen_gen(t_list *input)

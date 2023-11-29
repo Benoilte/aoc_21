@@ -6,27 +6,11 @@
 /*   By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 00:05:16 by bebrandt          #+#    #+#             */
-/*   Updated: 2023/11/29 00:14:41 by bebrandt         ###   ########.fr       */
+/*   Updated: 2023/11/29 21:26:52 by bebrandt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "days.h"
-
-int	compute_power_consumption(int *bit, size_t size)
-{
-	int	i;
-	int	gamma_rate;
-
-	i = size;
-	gamma_rate = 0;
-	while (--i >= 0)
-	{
-		if (bit[i] == 1)
-			gamma_rate += power_of_two((size - 1) - i);
-	}
-	free(bit);
-	return (gamma_rate * (gamma_rate ^ (power_of_two(size) - 1)));
-}
 
 int	get_oxygen(t_list *input, size_t size)
 {
@@ -135,49 +119,5 @@ void	filter_bit_criteria(t_list **root, int msb, int i)
 			prev = lst;
 			lst = lst->next;
 		}
-	}
-}
-
-int	*get_msb(t_list *input, size_t size)
-{
-	int		i;
-	int		*bit;
-	t_list	*tmp;
-
-	i = 0;
-	tmp = input;
-	bit = ft_calloc(size, sizeof(int));
-	if (!bit)
-		return (0);
-	while ((size_t)i < size)
-		bit[i++] = 0;
-	while (tmp)
-	{
-		i = size;
-		while (--i >= 0)
-		{
-			if (((char *)(tmp->content))[i] == '0')
-				bit[i]--;
-			else
-				bit[i]++;
-		}
-		tmp = tmp->next;
-	}
-	filter_msb(bit, size);
-	return (bit);
-}
-
-void	filter_msb(int *bit, size_t size)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < size)
-	{
-		if (bit[i] > 0)
-			bit[i] = 1;
-		else
-			bit[i] = 0;
-		i++;
 	}
 }

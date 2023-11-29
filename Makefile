@@ -6,7 +6,7 @@
 #    By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 14:22:06 by bebrandt          #+#    #+#              #
-#    Updated: 2023/11/28 20:56:19 by bebrandt         ###   ########.fr        #
+#    Updated: 2023/11/29 21:28:41 by bebrandt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ AR			=	ar rcs
 
 RM			=	rm -f
 
-all: $(NAME)
+all: libft $(NAME)
 
 %.o:	%.c
 	$(CC) $(HDRS) $(CFLAGS) -c $< -o $@
